@@ -1,14 +1,27 @@
 import * as vscode from 'vscode';
+import { TeamDocsExplorerProvider } from "./explorer";
 import { getRootPath } from "./util";
 
 export function activate(context: vscode.ExtensionContext) {
+  const provider = new TeamDocsExplorerProvider();
 
-	let disposable = vscode.commands.registerCommand('teamdocs.helloWorld', () => {
-    const workspaceRoot = getRootPath();
-		vscode.window.showInformationMessage(`My workspaceRoot is ${workspaceRoot}!`);
-	});
+  vscode.window.registerTreeDataProvider("teamdocs", provider);
 
-	context.subscriptions.push(disposable);
+  vscode.commands.registerCommand("teamDocs.openSettings", function () {
+    vscode.commands.executeCommand("workbench.action.openSettings", "teamdocs");
+  });
+
+  const workspaceRoot = getRootPath();
+  if (workspaceRoot === "") {
+    vscode.window
+      .showInformationMessage(
+        "TeamDocs is missing the `teamdocs.path_to_docs_folder` configuration. Please set the path to your docs folder.",
+        "Open Settings"
+      )
+      .then(function () {
+        vscode.commands.executeCommand("teamDocs.openSettings");
+      });
+  }
 }
 
 export function deactivate() {}

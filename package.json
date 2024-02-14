@@ -14,8 +14,46 @@
   "contributes": {
     "commands": [
       {
-        "command": "teamdocs.helloWorld",
-        "title": "Hello World"
+        "command": "teamDocs.openSettings",
+        "title": "Open Settings",
+        "icon": "$(settings-gear)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "teamdocs-explorer",
+          "title": "Team Docs",
+          "icon": "media/teamdocs-dark.svg"
+        }
+      ]
+    },
+    "views": {
+      "teamdocs-explorer": [
+        {
+          "id": "teamdocs",
+          "name": "PROJECT NAME",
+          "icon": "media/teamdocs-dark.svg",
+          "contextualTitle": "Team Docs Explorer"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "teamdocs",
+        "contents": "Choose your documentation directory.\n[Add path to docs](command:teamDocs.openSettings)"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Team Docs",
+        "properties": {
+          "teamdocs.path_to_docs_folder": {
+            "type": "string",
+            "markdownDescription": "Set the path to your documentation folder. Ex: ``~/Docs/engineering``",
+            "default": ""
+          }
+        }
       }
     ]
   },
