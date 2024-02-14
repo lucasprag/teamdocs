@@ -1,8 +1,8 @@
 {
   "name": "teamdocs",
   "displayName": "TeamDocs",
-  "description": "Make your docs more accessible right from the Activity bar in VSCode",
-  "version": "0.0.1",
+  "description": "TeamDocs ensures that your centralized documentation is conveniently accessible from the Activity Bar, regardless of the specific project you are currently working on.",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.86.0"
   },
