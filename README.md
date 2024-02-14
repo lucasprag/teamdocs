@@ -1,6 +1,6 @@
 # TeamDocs by lucasprag.com
 
-TeamDocs ensures that your centralized documentation is conveniently accessible from the Activity Bar, regardless of the specific project you are currently working on.
+[TeamDocs](https://marketplace.visualstudio.com/items?itemName=lucasprag.teamdocs&ssr=false#overview) ensures that your centralized documentation is conveniently accessible from the Activity Bar, regardless of the specific project you are currently working on.
 
 ## Features
 

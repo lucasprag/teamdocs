@@ -2,6 +2,8 @@
 
 All notable changes to this extension will be documented in this file following the structure inspired by [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.1.1] - 2024-02-13
+
 ## [0.1.0] - 2024-02-13
 
 ### Added
