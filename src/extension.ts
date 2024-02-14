@@ -11,6 +11,14 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand("workbench.action.openSettings", "teamdocs");
   });
 
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration(function (e) {
+      if (e.affectsConfiguration("teamdocs")) {
+        provider.refresh();
+      }
+    })
+  );
+
   const workspaceRoot = getRootPath();
   if (workspaceRoot === "") {
     vscode.window

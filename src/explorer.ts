@@ -3,6 +3,8 @@
 import { readdirSync, statSync, existsSync } from "fs";
 import { join } from "path";
 import {
+  Event,
+  EventEmitter,
   TreeItem,
   FileType,
   TreeItemCollapsibleState,
@@ -12,6 +14,15 @@ import {
 import { getRootPath } from "./util";
 
 export class TeamDocsExplorerProvider implements TreeDataProvider<any> {
+  private _onDidChangeTreeData: EventEmitter<any | undefined | null | void> =
+    new EventEmitter<any | undefined | null | void>();
+  readonly onDidChangeTreeData: Event<any | undefined | null | void> =
+    this._onDidChangeTreeData.event;
+
+  refresh(): void {
+    this._onDidChangeTreeData.fire(undefined);
+  }
+
   getTreeItem(element: any): TreeItem {
     const treeItem = new TreeItem(
       element.uri,
