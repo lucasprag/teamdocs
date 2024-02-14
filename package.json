@@ -32,7 +32,7 @@
       "teamdocs-explorer": [
         {
           "id": "teamdocs",
-          "name": "PROJECT NAME",
+          "name": "",
           "icon": "media/teamdocs-dark.svg",
           "contextualTitle": "Team Docs Explorer"
         }

@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 import { TeamDocsExplorerProvider } from "./explorer";
 import { TeamDocsCommands } from "./commands";
 import { getRootPath } from "./util";
@@ -35,6 +35,13 @@ export function activate(context: vscode.ExtensionContext) {
       .then(function () {
         vscode.commands.executeCommand("teamDocs.openSettings");
       });
+  } else {
+    // customize view title based on dir name
+    const dirName = workspaceRoot.split("/").slice(-1).join("");
+    const view = vscode.window.createTreeView("teamdocs", {
+      treeDataProvider: provider,
+    });
+    view.title = dirName;
   }
 }
 
