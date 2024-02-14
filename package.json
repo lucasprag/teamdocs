@@ -5,10 +5,14 @@
   "version": "0.1.0",
   "publisher": "lucasprag",
   "homepage": "https://github.com/lucasprag/teamdocs/blob/main/README.md",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/lucasprag/teamdocs"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucasprag/teamdocs"
+  },
+  "bugs": {
+    "url": "https://github.com/lucasprag/teamdocs/issues",
+    "email": "projects@lucasprag.com"
+  },
   "icon": "media/logo.png",
   "engines": {
     "vscode": "^1.86.0"
