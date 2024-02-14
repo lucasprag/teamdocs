@@ -1,11 +1,17 @@
 import * as vscode from 'vscode';
 import { TeamDocsExplorerProvider } from "./explorer";
+import { TeamDocsCommands } from "./commands";
 import { getRootPath } from "./util";
 
 export function activate(context: vscode.ExtensionContext) {
   const provider = new TeamDocsExplorerProvider();
+  const commands = new TeamDocsCommands();
 
   vscode.window.registerTreeDataProvider("teamdocs", provider);
+
+  vscode.commands.registerCommand("teamDocs.previewFile", function (resource) {
+    commands.previewFile(resource);
+  });
 
   vscode.commands.registerCommand("teamDocs.openSettings", function () {
     vscode.commands.executeCommand("workbench.action.openSettings", "teamdocs");

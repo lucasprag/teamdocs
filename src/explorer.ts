@@ -31,6 +31,18 @@ export class TeamDocsExplorerProvider implements TreeDataProvider<any> {
         : TreeItemCollapsibleState.None
     );
 
+    if (element.type === FileType.File) {
+      treeItem.command = {
+        command: "teamDocs.previewFile",
+        title: "Preview File",
+        arguments: [element.uri],
+      };
+
+      treeItem.contextValue = "file";
+    } else {
+      treeItem.contextValue = "folder";
+    }
+
     return treeItem;
   }
 
