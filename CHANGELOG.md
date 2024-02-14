@@ -1,9 +1,11 @@
 # Change Log
 
-All notable changes to the "teamdocs" extension will be documented in this file.
+All notable changes to this extension will be documented in this file following the structure inspired by [Keep a Changelog](https://keepachangelog.com/).
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.1.0] - 2024-02-13
 
-## [Unreleased]
-
-- Initial release
+### Added
+- required configuration for the documentation folder (`teamdocs.path_to_docs_folder`)
+- check for when the configuration is missing with quick button to go to settings
+- explorer showing the documentation files and folders
+- when clicking on file, it shows the markdown preview
