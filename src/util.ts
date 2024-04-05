@@ -1,7 +1,7 @@
 "use strict";
 
 import { homedir } from "os";
-import { resolve } from "path";
+import { resolve, extname } from "path";
 import { workspace } from "vscode";
 
 export function getRootPath(): string {
@@ -18,4 +18,31 @@ export function getRootPath(): string {
   location = resolve(location);
 
   return location;
+}
+
+export function getExcludePatterns(): string[] {
+  const excludeSettings: any = workspace
+    .getConfiguration("files")
+    .get("exclude");
+  return Object.keys(excludeSettings || {}).filter(
+    (key) => excludeSettings[key]
+  );
+}
+
+export function isMarkdownFile(filePath: string): boolean {
+  const fileExtension = extname(filePath);
+
+  const markdownExtensions: string[] = [
+    ".md",
+    ".markdown",
+    ".mdown",
+    ".mkdn",
+    ".mkd",
+    ".mdwn",
+    ".mdtxt",
+    ".mdtext",
+    ".text",
+  ];
+
+  return markdownExtensions.includes(fileExtension);
 }

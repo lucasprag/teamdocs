@@ -2,6 +2,12 @@
 
 All notable changes to this extension will be documented in this file following the structure inspired by [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- Changed search and explorer to hide files based on the vscode's settings called "Files: Exclude"
+- Change search and explorer to only preview markdown files and open any other type of file.
+
 ## [0.2.0] - 2024-04-05
 
 ### Added

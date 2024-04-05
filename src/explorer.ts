@@ -11,7 +11,8 @@ import {
   Uri,
   TreeDataProvider,
 } from "vscode";
-import { getRootPath } from "./util";
+import { minimatch } from "minimatch";
+import { getRootPath, getExcludePatterns } from "./util";
 
 export class TeamDocsExplorerProvider implements TreeDataProvider<any> {
   private _onDidChangeTreeData: EventEmitter<any | undefined | null | void> =
@@ -65,10 +66,17 @@ export class TeamDocsExplorerProvider implements TreeDataProvider<any> {
       return [];
     }
 
+    const excludePatterns = getExcludePatterns();
+
     const children: any[] = [];
     readdirSync(folder, "utf-8").forEach(function (filename: string | Buffer) {
       const file = join(folder, filename.toString());
       const relative = file.replace(root, "");
+
+      // Check if the file matches any of the exclude patterns
+      if (excludePatterns.some((pattern) => minimatch(relative, pattern))) {
+        return;
+      }
 
       const stat = statSync(file);
       const type = stat.isDirectory() ? FileType.Directory : FileType.File;

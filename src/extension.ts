@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { TeamDocsExplorerProvider } from "./explorer";
-import { getRootPath } from "./util";
+import { getRootPath, getExcludePatterns, isMarkdownFile } from "./util";
 
 export function activate(context: vscode.ExtensionContext) {
   const provider = new TeamDocsExplorerProvider();
@@ -8,7 +8,11 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.window.registerTreeDataProvider("teamdocs", provider);
 
   vscode.commands.registerCommand("teamDocs.previewFile", function (resource) {
-    return vscode.commands.executeCommand("markdown.showPreview", resource);
+    if (isMarkdownFile(resource.path)) {
+      vscode.commands.executeCommand("markdown.showPreview", resource);
+    } else {
+      vscode.commands.executeCommand("vscode.open", resource);
+    }
   });
 
   vscode.commands.registerCommand("teamDocs.openSettings", function () {
@@ -18,9 +22,11 @@ export function activate(context: vscode.ExtensionContext) {
   vscode.commands.registerCommand("teamDocs.search", async () => {
     const workspaceRoot = getRootPath();
     if (workspaceRoot) {
+      const excludePatterns = getExcludePatterns();
+
       const files = await vscode.workspace.findFiles(
         new vscode.RelativePattern(workspaceRoot, "**/**/**/**/**/**/*"),
-        null
+        `{${excludePatterns.join(",")}}`
       );
 
       const fileNames = files.map((file) => {
@@ -36,9 +42,14 @@ export function activate(context: vscode.ExtensionContext) {
           `${workspaceRoot}/${selectedFile}`
         );
 
-        vscode.commands.executeCommand("markdown.showPreview", selectedFileUri, {
-          preview: true,
-        });
+        if (isMarkdownFile(selectedFile)) {
+          vscode.commands.executeCommand(
+            "markdown.showPreview",
+            selectedFileUri
+          );
+        } else {
+          vscode.commands.executeCommand("vscode.open", selectedFileUri);
+        }
       }
     }
   });
