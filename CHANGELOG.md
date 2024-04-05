@@ -2,16 +2,19 @@
 
 All notable changes to this extension will be documented in this file following the structure inspired by [Keep a Changelog](https://keepachangelog.com/).
 
-## Unreleased
+## [0.3.0] - 2024-04-05
+
+### Added
+- Added a menu to the top of the explorer to trigger a search.
 
 ### Changed
 - Changed search and explorer to hide files based on the vscode's settings called "Files: Exclude"
-- Change search and explorer to only preview markdown files and open any other type of file.
+- Changed search and explorer to only preview markdown files and open any other type of file.
 
 ## [0.2.0] - 2024-04-05
 
 ### Added
-- Add `Team Docs: Search` command.
+- Added `Team Docs: Search` command.
 
 ### Changed
 - Changed the existing `Open Settings` command to `Team Docs: Open Settings`.

@@ -2,7 +2,7 @@
   "name": "teamdocs",
   "displayName": "TeamDocs",
   "description": "TeamDocs ensures that your centralized documentation is conveniently accessible from the Activity Bar, regardless of the specific project you are currently working on.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "lucasprag",
   "homepage": "https://github.com/lucasprag/teamdocs/blob/main/README.md",
   "repository": {
@@ -31,9 +31,19 @@
       },
       {
         "command": "teamDocs.search",
-        "title": "Team Docs: Search"
+        "title": "Team Docs: Search",
+        "icon": "$(search)"
       }
     ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "teamDocs.search",
+          "when": "view == teamdocs",
+          "group": "navigation"
+        }
+      ]
+    },
     "viewsContainers": {
       "activitybar": [
         {
