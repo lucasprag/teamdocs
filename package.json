@@ -2,7 +2,7 @@
   "name": "teamdocs",
   "displayName": "TeamDocs",
   "description": "TeamDocs ensures that your centralized documentation is conveniently accessible from the Activity Bar, regardless of the specific project you are currently working on.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "lucasprag",
   "homepage": "https://github.com/lucasprag/teamdocs/blob/main/README.md",
   "repository": {
@@ -26,8 +26,12 @@
     "commands": [
       {
         "command": "teamDocs.openSettings",
-        "title": "Open Settings",
+        "title": "Team Docs: Open Settings",
         "icon": "$(settings-gear)"
+      },
+      {
+        "command": "teamDocs.search",
+        "title": "Team Docs: Search"
       }
     ],
     "viewsContainers": {

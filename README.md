@@ -4,11 +4,29 @@
 
 ## Features
 
-While working on my project, I can seamlessly access and review the team's documentation written in Markdown, eliminating the need to navigate away from my project or open a separate VSCode window or website.
+### Team Docs Search
+
+While working on your project, search for your team's documentation written in Markdown, eliminating the need to navigate away from your project.
+
+1. Run the command `Team Docs: Search`
+
+![Using cmd+shit+p to see the Team Docs: Search command](media/search.png)
+
+2. Type to find your file
+
+![Typing stripe to find the doc](media/search-result.png)
+
+3. Hit Enter or Return to preview the markdown document.
+
+![Previewing the recently found doc](media/search-preview.png)
+
+### Team Docs Explorer
+
+While working on your project, access and review the team's documentation written in Markdown from the Activity Bar, eliminating the need to navigate away from your project.
 
 ![Your team docs are always accessible from the Activity Bar](media/docs-in-activity-bar.png)
 
-All I need to do is to click on Team Docs in the Activity Bar to see my team's documentation.
+Click on Team Docs in the Activity Bar to see your team's documentation.
 
 ![Showing the team documentation](media/docs.png)
 

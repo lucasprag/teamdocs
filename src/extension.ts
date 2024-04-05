@@ -1,20 +1,46 @@
 import * as vscode from "vscode";
 import { TeamDocsExplorerProvider } from "./explorer";
-import { TeamDocsCommands } from "./commands";
 import { getRootPath } from "./util";
 
 export function activate(context: vscode.ExtensionContext) {
   const provider = new TeamDocsExplorerProvider();
-  const commands = new TeamDocsCommands();
 
   vscode.window.registerTreeDataProvider("teamdocs", provider);
 
   vscode.commands.registerCommand("teamDocs.previewFile", function (resource) {
-    commands.previewFile(resource);
+    return vscode.commands.executeCommand("markdown.showPreview", resource);
   });
 
   vscode.commands.registerCommand("teamDocs.openSettings", function () {
     vscode.commands.executeCommand("workbench.action.openSettings", "teamdocs");
+  });
+
+  vscode.commands.registerCommand("teamDocs.search", async () => {
+    const workspaceRoot = getRootPath();
+    if (workspaceRoot) {
+      const files = await vscode.workspace.findFiles(
+        new vscode.RelativePattern(workspaceRoot, "**/**/**/**/**/**/*"),
+        null
+      );
+
+      const fileNames = files.map((file) => {
+        return file.path.replace(`${workspaceRoot}/`, "");
+      });
+
+      const selectedFile = await vscode.window.showQuickPick(fileNames, {
+        placeHolder: "Type to search files...",
+      });
+
+      if (selectedFile) {
+        const selectedFileUri = vscode.Uri.file(
+          `${workspaceRoot}/${selectedFile}`
+        );
+
+        vscode.commands.executeCommand("markdown.showPreview", selectedFileUri, {
+          preview: true,
+        });
+      }
+    }
   });
 
   context.subscriptions.push(
